@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Bloques{% endblock %}
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('index') }}">Backoffice</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ path('avisos') }}">Avisos</a></li>
+                    <li class="active"><a href="{{ path('bloques') }}">Bloques</a></li>
+                    <li><a href="{{ path('comunicaciones') }}">Comunicaciones</a></li>
+                    <li><a href="{{ path('configuracion') }}">Configuración</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <a href="{{ path('bloques_new') }}">
+                <button type="button" class="btn btn-primary btn-lg">Nuevo bloque</button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Lista de Bloques</h3>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Configurar</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for bloque in entities %}
+                <tr>
+                    <td><a href="{{ path('bloques_show', { 'id': bloque.id }) }}">{{ bloque.nombre }}</a></td>
+                    <td>{{ bloque.descripcion }}</td>
+                    <td><a href="{{ path('bloques_edit', {'id':bloque.id}) }}"> Configurar </a></td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

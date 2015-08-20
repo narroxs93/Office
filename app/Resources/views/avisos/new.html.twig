@@ -1,0 +1,133 @@
+{% extends 'avisos/avisos.html.twig' %}
+{% form_theme form 'forms/form_div_layout.html.twig' %}
+
+{% block title %}Aviso nuevo{% endblock %}
+{% block javascripts %}{{ tinymce_init() }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar aviso relacionado con...">
+        </div>
+    </div>
+
+    <div>
+
+    <div class="row">
+        <div class="col-xs-10"></div>
+        <div class="col-xs-2">
+            <a href="{{ path('avisos_new') }}">
+                <button type="button" class="btn btn-primary btn-lg">Nuevo aviso</button>
+            </a>
+        </div>
+    </div>
+
+    {# Container para hacer el formulario dentro #}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <form role="form">
+            <div class="row">
+                <div class="col-xs-5">
+                    <h3> Aviso nuevo </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(form.nombre) }}
+                    {{ form_widget(form.nombre,
+                        {'attr': {'class': 'form-control'} }
+                    ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(form.descripcion,'Descripción') }}
+                    {{ form_widget(form.descripcion,
+                        {'attr': {'class': 'form-control'} }
+                    ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(form.metodo, 'Método')}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-5">
+                {{ form_widget(form.metodo,
+                    {'attr': {'class':'radio-inline'} } )}}
+                </div>
+            </div>
+
+            <div class="table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-5">{{ form_label(form.condicion, 'Condición') }}</th>
+                            <th class="col-xs-3">{{ form_label(form.repeticion, 'Repetición') }}</th>
+                            <th class="col-xs-4">{{ form_label(form.destino, 'Destino') }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    <div class="radio">
+                        {{ form_widget(form.condicion[0]) }} {{ form_label(form.condicion[0]) }} {{ form_widget(form.pagina) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.condicion[1]) }} {{ form_label(form.condicion[1]) }} {{ form_widget(form.tiempo) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.condicion[2]) }} {{ form_label(form.condicion[2]) }} {{ form_widget(form.numero) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.condicion[3]) }} {{ form_label(form.condicion[3]) }} {{ form_widget(form.scroll) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-3">
+                    {{ form_widget(form.repeticion,
+                        {'attr': {'class':'radio'} }
+                    )}}
+                </div>
+
+                <div class="form-group col-xs-4">
+                    <div class="radio">
+                        {{ form_widget(form.destino[0]) }} {{ form_label(form.destino[0]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.destino[1]) }} {{ form_label(form.destino[1]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.destino[2]) }} {{ form_label(form.destino[2]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.destino[3]) }} {{ form_label(form.destino[3]) }} {{ form_widget(form.grupo) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(form.destino[4]) }} {{ form_label(form.destino[4]) }} {{ form_widget(form.usuario) }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    {{ form_label(form.codigo,'Código') }}
+                    {{ form_widget(form.codigo,
+                        {'attr': {'class':'tinymce',
+                    'data-theme':'advanced'} }
+                    ) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </form>
+        <a href="{{ path('avisos') }}">
+            Lista de avisos
+        </a>
+    </div>
+{% endblock %}

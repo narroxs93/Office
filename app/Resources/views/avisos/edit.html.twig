@@ -1,0 +1,146 @@
+{% extends 'avisos/avisos.html.twig' %}
+{% form_theme edit_form 'forms/form_div_layout.html.twig' %}
+
+{% block title %}Editar aviso {{ aviso.nombre }}{% endblock %}
+{% block javascripts %}{{ tinymce_init() }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar aviso relacionado con...">
+        </div>
+    </div>
+
+<div>
+
+    <div class="row">
+        <div class="col-xs-10"></div>
+        <div class="col-xs-2">
+            <a href="{{ path('avisos_new') }}">
+                <button type="button" class="btn btn-primary btn-lg">Nuevo aviso</button>
+            </a>
+        </div>
+    </div>
+
+    {# Container para hacer el formulario dentro #}
+<div class="container">
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+</div>
+
+    <div class="container">
+        {{ form_start(edit_form) }}
+        {{ form_errors(edit_form) }}
+        <form role="form">
+            <div class="row">
+                <div class="col-xs-5">
+                    <h3> Editar el aviso {{ aviso.id }} con nombre {{ aviso.nombre }} </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(edit_form.nombre) }}
+                    {{ form_widget(edit_form.nombre,
+                    {'attr': {'class': 'form-control'} }
+                    ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(edit_form.descripcion) }}
+                    {{ form_widget(edit_form.descripcion,
+                    {'attr': {'class': 'form-control'} }
+                    ) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_label(edit_form.metodo, 'Método')}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    {{ form_widget(edit_form.metodo,
+                    {'attr': {'class':'radio-inline'} } )}}
+                </div>
+            </div>
+
+            <div class="table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="col-xs-5">{{ form_label(edit_form.condicion, 'Condición') }}</th>
+                        <th class="col-xs-3">{{ form_label(edit_form.repeticion, 'Repetición') }}</th>
+                        <th class="col-xs-4">{{ form_label(edit_form.destino, 'Destino') }}</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-5">
+                    <div class="radio">
+                        {{ form_widget(edit_form.condicion[0]) }} {{ form_label(edit_form.condicion[0]) }} {{ form_widget(edit_form.pagina) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.condicion[1]) }} {{ form_label(edit_form.condicion[1]) }} {{ form_widget(edit_form.tiempo) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.condicion[2]) }} {{ form_label(edit_form.condicion[2]) }} {{ form_widget(edit_form.numero) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.condicion[3]) }} {{ form_label(edit_form.condicion[3]) }} {{ form_widget(edit_form.scroll) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-3">
+                    {{ form_widget(edit_form.repeticion,
+                    {'attr': {'class':'radio'} }
+                    )}}
+                </div>
+
+                <div class="form-group col-xs-4">
+                    <div class="radio">
+                        {{ form_widget(edit_form.destino[0]) }} {{ form_label(edit_form.destino[0]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.destino[1]) }} {{ form_label(edit_form.destino[1]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.destino[2]) }} {{ form_label(edit_form.destino[2]) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.destino[3]) }} {{ form_label(edit_form.destino[3]) }} {{ form_widget(edit_form.grupo) }}
+                    </div>
+                    <div class="radio">
+                        {{ form_widget(edit_form.destino[4]) }} {{ form_label(edit_form.destino[4]) }} {{ form_widget(edit_form.usuario) }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    {{ form_label(edit_form.codigo,'Código') }}
+                    {{ form_widget(edit_form.codigo,
+                    {'attr': {'class':'tinymce',
+                    'data-theme' : 'advanced' } }
+                    ) }}
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+            {{ form(delete_form) }}
+        </form>
+        <a href="{{ path('avisos') }}">
+            Lista de avisos
+        </a>
+        <br>
+        <a href="{{ path('avisos_show',{'id': aviso.id}) }}">
+            Visualizar Aviso {{ aviso.id }}
+        </a>
+    </div>
+    {% endblock %}

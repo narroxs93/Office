@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Comunicaciones{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('index') }}">Backoffice</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ path('avisos') }}">Avisos</a></li>
+                    <li><a href="{{ path('bloques') }}">Bloques</a></li>
+                    <li class="active"><a href="{{ path('comunicaciones') }}">Comunicaciones</a></li>
+                    <li><a href="{{ path('configuracion') }}">Configuración</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <a href="{{ path('comunicaciones_new') }}">
+                <button type="button" class="btn btn-primary btn-lg">Nueva comunicación</button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Lista de Comunicaciones</h3>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Configurar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comunicacion in entities %}
+                <tr>
+                    <td><a href="{{ path('comunicaciones_show', { 'id': comunicacion.id }) }}">{{ comunicacion.nombre }}</a></td>
+                    <td>{{ comunicacion.descripcion }}</td>
+                    <td><a href="{{ path('comunicaciones_edit', {'id':comunicacion.id}) }}"> Configurar </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

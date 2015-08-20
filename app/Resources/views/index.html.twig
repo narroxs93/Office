@@ -1,0 +1,61 @@
+{# plantilla de segundo nivel de la aplicación porque de momento se necesita un navbar a todas partes. #}
+{% extends "layout.html.twig" %}
+
+{% block title %}Backoffice{% endblock %}
+{% block stylesheets %}
+    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+{% endblock %}
+
+{% block fos_body %}{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('index') }}">Backoffice</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('avisos') }}">Avisos</a></li>
+                <li><a href="{{ path('bloques') }}">Bloques</a></li>
+                <li><a href="{{ path('comunicaciones') }}">Comunicaciones</a></li>
+                <li><a href="{{ path('configuracion') }}">Configuración</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="starter-template">
+            <h1>Ésta es tu BackOffice</h1>
+            <p class="lead">Aquí tienes diferentes opciones para gestionar tu tienda.</p>
+
+            <p><a href="{{ path('dashboard') }}">Dashboard.</a> </p>
+            <p><a href="{{ path('avisos') }}">Avisos.</a> </p>
+            <p><a href="{{ path('bloques') }}">Bloques.</a> </p>
+            <p><a href="{{ path('comunicaciones') }}">Comunicaciones.</a> </p>
+            <p><a href="{{ path('configuracion') }}">Configuración.</a> </p>
+
+            <br>
+            <p class="lead">Bienvenido a la gestión de tu tienda. </p>
+            <p><a href="{{ path('fos_user_security_login') }}">Log in.</a> </p>
+            <p><a href="{{ path('fos_user_security_logout') }}">Logout.</a></p>
+            <p><a href="{{ path('fos_user_registration_register') }}">Register.</a></p>
+            <br>
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                     {{ flashMessage }}
+                    </div>
+                {% endfor %}
+        </div>
+</div><!-- /.container -->
+{% endblock %}

@@ -1,0 +1,37 @@
+cinetic_backoffice:
+    resource: "@CineticBackofficeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_configuracion:
+    resource: "@CineticConfiguracionBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_comunicaciones:
+    resource: "@CineticComunicacionesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_bloques:
+    resource: "@CineticBloquesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_avisos:
+    resource: "@CineticAvisosBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_dashboard:
+    resource: "@CineticDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_user:
+    resource: "@CineticUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

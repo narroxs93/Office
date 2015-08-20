@@ -1,0 +1,113 @@
+{% extends 'avisos/avisos.html.twig' %}
+{% block title %}Aviso {{ aviso.nombre }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3> Aviso {{ aviso.id }}: {{ aviso.nombre }}</h3>
+        <table class="table">
+            <tbody>
+
+            <tr>
+                <th>Id</th>
+                <td>{{ aviso.id }}</td>
+            </tr>
+
+            <tr>
+                <th>Nombre</th>
+                <td>{{ aviso.nombre }}</td>
+            </tr>
+
+            <tr>
+                <th>Descripción</th>
+                <td>{{ aviso.descripcion }}</td>
+            </tr>
+
+            <tr>
+                <th>Método</th>
+                <td>{{ aviso.metodo }}</td>
+            </tr>
+
+            <tr>
+                <th>Condición</th>
+                <td>{{ aviso.condicion }}</td>
+            </tr>
+
+            <tr>
+                {% if aviso.condicion == 'pagina' %}
+                    <th>Página</th>
+                    <td>{{ aviso.pagina }}</td>
+                {% elseif aviso.condicion == 'tiempo' %}
+                    <th>Tiempo</th>
+                    <td>{{ aviso.tiempo }}</td>
+                {% elseif aviso.condicion == 'numero' %}
+                    <th>Número</th>
+                    <td>{{ aviso.numero }}</td>
+                {% else %}
+                    <th>Scroll</th>
+                    <td>{{ aviso.scroll }}</td>
+                {% endif %}
+            </tr>
+
+            <tr>
+                <th>Repeticion</th>
+                <td>{{ aviso.repeticion }},
+                    {% if aviso.repeticion == '0' %}
+                        Una sola vez
+                    {% else %}
+                        A cada condición.
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Destino</th>
+                <td>
+                    {{ aviso.destino }},
+                    {% if aviso.destino == '0' %}
+                        Cualquiera
+                    {% elseif aviso.destino == '1' %}
+                        Solo autentificados
+                    {% elseif aviso.destino == '2'%}
+                        Solo sin autentificar
+                    {% elseif aviso.destino == '3' %}
+                        Grupo
+                    {% else %}
+                        ID Usuario
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+            {% if aviso.destino == '3' %}
+                <th>Grupo</th>
+                <td>{{ aviso.grupo }}</td>
+            {% elseif aviso.destino == '4' %}
+                <th>Usuario</th>
+                <td>{{ aviso.usuario }}</td>
+            {% endif %}
+            </tr>
+
+            <tr>
+                <th>Código</th>
+                <td>{{ aviso.codigo }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('avisos') }}">
+                    Lista de avisos
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('avisos_edit', { 'id': aviso.id }) }}">
+                    Editar {{ aviso.nombre }}
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+{% endblock %}

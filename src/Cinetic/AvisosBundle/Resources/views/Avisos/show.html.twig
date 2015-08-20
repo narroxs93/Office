@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Avisos</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Metodo</th>
+                <td>{{ entity.metodo }}</td>
+            </tr>
+            <tr>
+                <th>Condicion</th>
+                <td>{{ entity.condicion }}</td>
+            </tr>
+            <tr>
+                <th>Pagina</th>
+                <td>{{ entity.pagina }}</td>
+            </tr>
+            <tr>
+                <th>Tiempo</th>
+                <td>{{ entity.tiempo }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ entity.numero }}</td>
+            </tr>
+            <tr>
+                <th>Scroll</th>
+                <td>{{ entity.scroll }}</td>
+            </tr>
+            <tr>
+                <th>Repeticion</th>
+                <td>{{ entity.repeticion }}</td>
+            </tr>
+            <tr>
+                <th>Destino</th>
+                <td>{{ entity.destino }}</td>
+            </tr>
+            <tr>
+                <th>Grupo</th>
+                <td>{{ entity.grupo }}</td>
+            </tr>
+            <tr>
+                <th>Usuario</th>
+                <td>{{ entity.usuario }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ entity.codigo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('avisos') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('avisos_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

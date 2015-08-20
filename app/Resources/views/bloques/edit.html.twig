@@ -1,0 +1,19 @@
+{% extends 'bloques/bloques.html.twig' %}
+
+{% block title %}Editar un bloque{% endblock %}
+{% block content %}
+    <div class="container">
+        <h3>Bloques edit</h3>
+
+        {{ form(edit_form) }}
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('bloques') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+{% endblock %}

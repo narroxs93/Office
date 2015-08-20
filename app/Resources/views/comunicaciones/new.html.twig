@@ -1,0 +1,18 @@
+{% extends 'comunicaciones/comunicaciones.html.twig' %}
+
+{% block title %}Nueva comunicación{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>Comunicación nueva</h3>
+
+    {{ form(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('comunicaciones') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
